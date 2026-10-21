@@ -129,7 +129,7 @@
   .hero-kick{font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:1.6rem}
   .hero-kick b{color:var(--ink)}
   h1.hero-h{
-    font-family:var(--serif);font-weight:400;font-size:clamp(3.1rem,9vw,7.4rem);line-height:.98;letter-spacing:-.01em;
+    font-family:var(--serif);font-weight:400;font-size:clamp(3.1rem,7vw,6.5rem);line-height:.98;letter-spacing:-.01em;
   }
   h1.hero-h .rv-line{display:block}
   h1.hero-h em{font-style:italic;color:var(--accent)}
@@ -142,6 +142,27 @@
   .scrollcue{display:flex;align-items:center;gap:.7rem;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-dim)}
   .scrollcue svg{width:14px;height:20px;animation:bob 1.8s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+
+  /* ============ MINI COURSE (hero) ============ */
+  .hero-top{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.9fr);gap:3rem;align-items:center}
+  @media(max-width:960px){.hero-top{grid-template-columns:1fr;gap:2.6rem}}
+  .race{display:none}
+  .js .race{display:block}
+  .race{max-width:520px;width:100%;justify-self:end;transform:rotate(1.2deg)}
+  @media(max-width:960px){.race{justify-self:start;transform:none}}
+  .race-card{background:var(--paper2);border:1.3px solid var(--ink);border-radius:6px;box-shadow:6px 6px 0 var(--accent);overflow:hidden}
+  .race-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .race-title{color:var(--ink)}
+  .race-title::before{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--accent);margin-right:.55rem}
+  .race-hud{font-variant-numeric:tabular-nums;text-align:right}
+  .race-stage{display:block;width:100%;padding:0;border:0;background:var(--paper2);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;line-height:0}
+  .race-stage canvas{width:100%;aspect-ratio:4/3;display:block}
+  .race-stage:focus-visible{outline:3px solid var(--accent-text);outline-offset:-3px}
+  .race-foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1rem;border-top:1px solid var(--line);flex-wrap:wrap}
+  .race-msg{font-size:.84rem;line-height:1.5;color:var(--ink-soft);flex:1 1 14rem;min-height:2.5em}
+  .race-reset{font:inherit;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);background:none;border:1px solid var(--ink);border-radius:100px;padding:.55rem 1rem;min-height:44px;cursor:pointer;transition:background .2s,color .2s}
+  .race-reset:hover{background:var(--ink);color:var(--paper)}
+  .race-reset:focus-visible{outline:3px solid var(--accent-text);outline-offset:2px}
 
   /* ============ PROFIL ============ */
   .profil-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:5rem;align-items:start}
@@ -364,6 +385,8 @@
 
   <!-- ================= HERO ================= -->
   <section id="hero" class="wrap">
+    <div class="hero-top">
+    <div class="hero-main">
     <div class="hero-kick">Lisa Pautard · <b>Communication des organisations</b>, IUT Lyon 3</div>
     <h1 class="hero-h">
       <span class="rv-line"><span class="rv-word"><span>Je</span></span> <span class="rv-word"><span>raconte</span></span></span>
@@ -373,6 +396,21 @@
     <p class="hero-sub fade-up">
       Des contenus, des identités et des supports qui tiennent la route hors du confort d'un exercice d'école. J'aime quand c'est carré. J'aime encore plus quand une bonne idée vient tout bousculer.
     </p>
+    </div>
+    <div class="race fade-up" role="group" aria-labelledby="raceT">
+      <div class="race-card">
+        <div class="race-top"><span id="raceT" class="race-title">Pause jeu</span><span class="race-hud" id="raceHud">Tour 1 · Record --</span></div>
+        <button type="button" class="race-stage" id="raceStage" data-cursor="conduire" aria-label="Mini course de voiture. Maintiens le clic, ou la barre d’espace, pour accélérer. Relâche avant les virages marqués en orange.">
+          <canvas width="800" height="600" aria-hidden="true"></canvas>
+        </button>
+        <div class="race-foot">
+          <p class="race-msg" id="raceMsg" role="status">Maintiens le clic (ou la barre d’espace) pour accélérer. Relâche avant les virages orange.</p>
+          <button type="button" class="race-reset" id="raceReset">Retour sur la grille</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
     <div class="hero-row fade-up">
       <svg class="sig" viewBox="0 0 220 60" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
         <path id="sigpath" d="M4 44 C 20 10, 34 10, 40 32 C 44 46, 52 46, 58 28 C 62 16, 68 16, 70 30 L 74 44 L 84 16 L 90 44 C 96 20, 108 14, 118 22 C 128 30, 118 44, 106 40 C 122 40, 150 20, 168 24 C 186 28, 176 44, 160 40 C 176 44, 200 30, 216 20"/>
@@ -929,5 +967,279 @@ if (window.NodeList && !NodeList.prototype.forEach) { NodeList.prototype.forEach
 })();
 </script>
 
+<script>
+/* ---------- mini course du hero : aucune requete, aucun stockage, boucle arretee quand rien ne bouge ---------- */
+(function(){
+  try{
+    var stage = document.getElementById('raceStage');
+    if(!stage) return;
+    var cv = stage.querySelector('canvas');
+    var ctx = cv.getContext && cv.getContext('2d');
+    if(!ctx) return;
+    var hud = document.getElementById('raceHud'), msg = document.getElementById('raceMsg'), resetBtn = document.getElementById('raceReset');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var W = 400, H = 300, ROAD = 40;
+    var INK = '#15171A', PAPER = '#F6F1E6', WHITE = '#FFFFFF', ACC = '#FF4624', DIM = 'rgba(21,23,26,.28)';
+    var VMAX = 190, ACC_G = 100, BRAKE = 150, LAT = 520;
+
+    /* ----- trace : spline fermee, rééchantillonnee ----- */
+    var CP = [[230,250],[150,232],[108,252],[58,212],[54,130],[100,62],[170,56],[214,100],[198,156],[258,184],[302,122],[346,92],[356,172],[322,238]];
+    var raw = [], n = CP.length, i, j;
+    for(i=0;i<n;i++){
+      var p0=CP[(i-1+n)%n], p1=CP[i], p2=CP[(i+1)%n], p3=CP[(i+2)%n];
+      for(j=0;j<20;j++){
+        var t=j/20, t2=t*t, t3=t2*t;
+        raw.push([
+          0.5*((2*p1[0])+(-p0[0]+p2[0])*t+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*t2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*t3),
+          0.5*((2*p1[1])+(-p0[1]+p2[1])*t+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*t2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*t3)
+        ]);
+      }
+    }
+    var cum = [0], m = raw.length;
+    for(i=1;i<=m;i++){
+      var a=raw[i-1], b=raw[i%m];
+      cum.push(cum[i-1]+Math.sqrt((b[0]-a[0])*(b[0]-a[0])+(b[1]-a[1])*(b[1]-a[1])));
+    }
+    var L = cum[m], N = Math.round(L/3), X=[], Y=[], k=0;
+    for(i=0;i<N;i++){
+      var target = i*L/N;
+      while(cum[k+1] < target) k++;
+      var f = (target-cum[k])/(cum[k+1]-cum[k]), A0=raw[k], B0=raw[(k+1)%m];
+      X.push(A0[0]+(B0[0]-A0[0])*f); Y.push(A0[1]+(B0[1]-A0[1])*f);
+    }
+    var ANG = [], K = [], VL = [];
+    function wrap(x){ return (x+N)%N; }
+    for(i=0;i<N;i++){
+      var pa=wrap(i-1), pb=wrap(i+1);
+      ANG.push(Math.atan2(Y[pb]-Y[pa], X[pb]-X[pa]));
+    }
+    var w = 6;
+    for(i=0;i<N;i++){
+      var d = ANG[wrap(i+w)]-ANG[wrap(i-w)];
+      while(d>Math.PI) d-=2*Math.PI;
+      while(d<-Math.PI) d+=2*Math.PI;
+      K.push(d/(2*w*L/N));
+    }
+    var vraw = [];
+    for(i=0;i<N;i++) vraw.push(Math.min(VMAX, Math.sqrt(LAT/Math.max(Math.abs(K[i]),1e-4))*1.0));
+    /* zone elargie : on fait payer le virage un peu avant et un peu apres */
+    for(i=0;i<N;i++){
+      var mn = VMAX;
+      for(j=-7;j<=7;j++) mn = Math.min(mn, vraw[wrap(i+j)]);
+      VL.push(mn);
+    }
+    function hard(idx){ return VL[idx] < VMAX*0.86; }
+
+    /* ----- couche statique (piste) ----- */
+    var stat = document.createElement('canvas'), sctx = stat.getContext('2d'), sc = 1;
+    function path(c){
+      c.beginPath();
+      for(var q=0;q<N;q++){ if(q===0) c.moveTo(X[q]*sc,Y[q]*sc); else c.lineTo(X[q]*sc,Y[q]*sc); }
+      c.closePath();
+    }
+    function tree(c,x,y,r){
+      c.lineWidth = 1.3*sc; c.strokeStyle = INK; c.fillStyle = WHITE;
+      c.beginPath(); c.moveTo(x*sc,(y+r)*sc); c.lineTo(x*sc,(y+r+5)*sc); c.stroke();
+      c.beginPath(); c.arc(x*sc,y*sc,r*sc,0,Math.PI*2); c.fill(); c.stroke();
+    }
+    function buildStatic(){
+      stat.width = cv.width; stat.height = cv.height;
+      var c = sctx;
+      c.clearRect(0,0,stat.width,stat.height);
+      c.lineJoin = 'round'; c.lineCap = 'butt';
+      /* route : contour encre puis papier */
+      path(c); c.setLineDash([]); c.strokeStyle = INK; c.lineWidth = (ROAD+3.2)*sc; c.stroke();
+      path(c); c.strokeStyle = PAPER; c.lineWidth = ROAD*sc; c.stroke();
+      path(c); c.strokeStyle = DIM; c.lineWidth = 1*sc; c.setLineDash([6*sc,8*sc]); c.stroke(); c.setLineDash([]);
+      /* vibreurs orange et encre dans les virages serres, cote exterieur */
+      var kc = 0;
+      for(i=0;i<N;i+=2){
+        if(!hard(i)) continue;
+        var sg = K[i] > 0 ? 1 : -1, nx = sg*Math.sin(ANG[i]), ny = -sg*Math.cos(ANG[i]);
+        var r0 = ROAD/2+2.2, r1 = ROAD/2+7;
+        c.strokeStyle = (kc++%2) ? INK : ACC; c.lineWidth = 3.6*sc; c.lineCap = 'butt';
+        c.beginPath(); c.moveTo((X[i]+nx*r0)*sc,(Y[i]+ny*r0)*sc); c.lineTo((X[i]+nx*r1)*sc,(Y[i]+ny*r1)*sc); c.stroke();
+      }
+      /* ligne de depart a damier */
+      var sx = X[0], sy = Y[0], tx = Math.cos(ANG[0]), ty = Math.sin(ANG[0]), nx0 = -ty, ny0 = tx;
+      c.setLineDash([4*sc,4*sc]); c.lineWidth = 3*sc; c.strokeStyle = INK;
+      for(var row=0;row<2;row++){
+        var off = (row-0.5)*3*0+ (row?1.6:-1.6);
+        c.lineDashOffset = row ? 4*sc : 0;
+        c.beginPath();
+        c.moveTo((sx+tx*off-nx0*ROAD/2)*sc,(sy+ty*off-ny0*ROAD/2)*sc);
+        c.lineTo((sx+tx*off+nx0*ROAD/2)*sc,(sy+ty*off+ny0*ROAD/2)*sc);
+        c.stroke();
+      }
+      c.setLineDash([]); c.lineDashOffset = 0;
+      /* decor a l'encre */
+      tree(c,150,168,9); tree(c,128,128,7); tree(c,152,120,6);
+      tree(c,300,200,8); tree(c,26,40,8); tree(c,380,40,7); tree(c,28,262,6);
+      /* fanion orange */
+      c.strokeStyle = INK; c.lineWidth = 1.3*sc;
+      c.beginPath(); c.moveTo(258*sc,238*sc); c.lineTo(258*sc,214*sc); c.stroke();
+      c.fillStyle = ACC; c.beginPath(); c.moveTo(258*sc,214*sc); c.lineTo(274*sc,220*sc); c.lineTo(258*sc,226*sc); c.closePath(); c.fill(); c.stroke();
+    }
+
+    /* ----- etat du jeu ----- */
+    var state = 'idle', gas = false, s = 0, v = 0, lap = 1, best = null, crashes = 0;
+    var lightsT0 = 0, lapStart = 0, goAt = 0, spinT = 0, spinSide = 1, puffs = [], raf = 0, last = 0;
+    var CRASH = [
+      'Oups, tout droit ! La piste, elle, tournait.',
+      'Trop de gaz. On relâche avant le virage, comme avant d’envoyer un mail.',
+      'Dans le décor ! Heureusement, ici pas de brief client.',
+      'Ça sent la gomme brûlée. Relève le pied et repars.'
+    ];
+    function fmt(t){ return (t/1000).toFixed(1).replace('.', ',') + ' s'; }
+    var lastHud = '';
+    function setHud(){
+      var cur = state === 'race' ? fmt(performance.now()-lapStart) : '0,0 s';
+      var txt = 'Tour ' + lap + ' · ' + cur + ' · Record ' + (best === null ? '--' : fmt(best));
+      if(txt !== lastHud){ hud.textContent = txt; lastHud = txt; }
+    }
+    function say(t){ msg.textContent = t; }
+
+    function resize(){
+      var cw = Math.max(240, Math.round(stage.clientWidth)), dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var pw = Math.round(cw*dpr);
+      if(cv.width !== pw){ cv.width = pw; cv.height = Math.round(pw*H/W); }
+      sc = cv.width / W;
+      buildStatic();
+      draw(performance.now());
+    }
+
+    function carAt(sd){
+      var u = ((sd % L) + L) % L / L * N, i0 = Math.floor(u) % N, i1 = (i0+1) % N, fr = u - Math.floor(u);
+      var x = X[i0]+(X[i1]-X[i0])*fr, y = Y[i0]+(Y[i1]-Y[i0])*fr;
+      return {x:x, y:y, a:ANG[i0], i:i0};
+    }
+
+    function drawCar(x,y,a,scale){
+      ctx.save();
+      ctx.translate(x*sc,y*sc); ctx.rotate(a); ctx.scale(sc*scale, sc*scale);
+      ctx.lineJoin = 'round'; ctx.strokeStyle = INK; ctx.lineWidth = 1.1;
+      ctx.fillStyle = INK;
+      ctx.fillRect(-7.5,-6,4.2,2.6); ctx.fillRect(-7.5,3.4,4.2,2.6);
+      ctx.fillRect(3,-5.6,3.6,2.2); ctx.fillRect(3,3.4,3.6,2.2);
+      ctx.fillRect(-10,-4.2,2,8.4);
+      ctx.fillStyle = ACC;
+      ctx.beginPath(); ctx.moveTo(-8,-2.2); ctx.lineTo(3,-1.7); ctx.lineTo(10.5,-.6); ctx.lineTo(10.5,.6); ctx.lineTo(3,1.7); ctx.lineTo(-8,2.2); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+      ctx.fillStyle = WHITE; ctx.beginPath(); ctx.arc(-1,0,1.9,0,Math.PI*2); ctx.fill(); ctx.stroke();
+      ctx.restore();
+    }
+
+    function draw(now){
+      ctx.clearRect(0,0,cv.width,cv.height);
+      ctx.drawImage(stat,0,0);
+      /* traces de gomme */
+      for(var q=puffs.length-1;q>=0;q--){
+        var pf = puffs[q], age = (now-pf.t)/900;
+        if(age > 1){ puffs.splice(q,1); continue; }
+        ctx.strokeStyle = 'rgba(21,23,26,' + (0.45*(1-age)).toFixed(3) + ')'; ctx.lineWidth = 1.2*sc;
+        ctx.beginPath(); ctx.arc(pf.x*sc,pf.y*sc,(4+age*14)*sc,0,Math.PI*2); ctx.stroke();
+      }
+      var c = carAt(s), x = c.x, y = c.y, a = c.a;
+      if(spinT > 0){
+        var sg = spinSide, nx = sg*Math.sin(c.a), ny = -sg*Math.cos(c.a), off = 24*Math.sin(Math.PI*Math.min(spinT,1));
+        x += nx*off; y += ny*off;
+        if(!reduce) a += spinT*Math.PI*4;
+      }
+      drawCar(x,y,a,1.5);
+      /* feux de depart */
+      if(state === 'lights' || (state === 'race' && now-goAt < 800)){
+        var step = state === 'lights' ? Math.min(3, Math.floor((now-lightsT0)/650)) : 3;
+        ctx.lineWidth = 1.4*sc; ctx.strokeStyle = INK;
+        for(var l=0;l<3;l++){
+          ctx.fillStyle = (l < step && state === 'lights') ? ACC : WHITE;
+          ctx.beginPath(); ctx.arc((22+l*20)*sc,22*sc,7*sc,0,Math.PI*2); ctx.fill(); ctx.stroke();
+        }
+        if(state === 'race'){
+          ctx.fillStyle = ACC; ctx.font = 'italic ' + (44*sc) + 'px "Instrument Serif", Georgia, serif'; ctx.textBaseline = 'middle';
+          ctx.fillText('Go !', 80*sc, 22*sc);
+        }
+      }
+    }
+
+    function startLights(){
+      state = 'lights'; lightsT0 = performance.now(); s = 0; v = 0; spinT = 0;
+      say('Feux… attention…');
+    }
+    function crash(idx){
+      crashes++; v = 0; spinT = 0.0001; spinSide = K[idx] > 0 ? 1 : -1;
+      var cc = carAt(s); puffs.push({x:cc.x, y:cc.y, t:performance.now()});
+      say(CRASH[crashes % CRASH.length]);
+    }
+    function lapDone(){
+      var t = performance.now()-lapStart, rec = best === null || t < best;
+      if(rec) best = t;
+      lapStart = performance.now(); lap++;
+      var txt = t < 12000 ? 'Quel chrono. On devrait vraiment travailler ensemble.'
+              : t < 18000 ? 'Beau tour, propre et carré. Ça me ressemble.'
+              : 'Un tour propre, c’est déjà ça. En com aussi, la régularité paie.';
+      say((rec ? 'Nouveau record : ' : 'Tour en ') + fmt(t) + '. ' + txt);
+    }
+    function update(dt, now){
+      if(state === 'lights'){
+        if(now-lightsT0 >= 2600){ state = 'race'; goAt = now; lapStart = now; say('C’est parti !'); }
+        return;
+      }
+      if(state !== 'race') return;
+      if(spinT > 0){
+        spinT += dt/1.1;
+        if(spinT >= 1){ spinT = 0; v = 0; }
+        return;
+      }
+      v += (gas ? ACC_G : -BRAKE)*dt;
+      if(v > VMAX) v = VMAX;
+      if(v < 0) v = 0;
+      var prev = s;
+      s += v*dt;
+      var idx = Math.floor((((s % L)+L) % L)/L*N) % N;
+      if(v > VL[idx]*1.08 && v > 40){ crash(idx); return; }
+      if(Math.floor(s/L) > Math.floor(prev/L)) lapDone();
+    }
+    function active(){ return state === 'lights' || spinT > 0 || (state === 'race' && (v > 0 || gas)); }
+    function frame(now){
+      var dt = Math.min((now-last)/1000, 0.05); last = now;
+      update(dt, now); draw(now); setHud();
+      raf = (active() || puffs.length) ? requestAnimationFrame(frame) : 0;
+    }
+    function kick(){ if(!raf){ last = performance.now(); raf = requestAnimationFrame(frame); } }
+
+    function down(){ gas = true; if(state === 'idle') startLights(); kick(); }
+    function up(){ gas = false; kick(); }
+
+    stage.addEventListener('pointerdown', function(e){
+      if(e.button && e.button !== 0) return;
+      try{ stage.setPointerCapture(e.pointerId); }catch(err){}
+      down();
+    });
+    ['pointerup','pointercancel','lostpointercapture','pointerleave'].forEach(function(ev){ stage.addEventListener(ev, up); });
+    stage.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    stage.addEventListener('keydown', function(e){
+      if(e.code === 'Space' || e.code === 'Enter' || e.code === 'ArrowUp'){ e.preventDefault(); if(!e.repeat) down(); }
+    });
+    stage.addEventListener('keyup', function(e){
+      if(e.code === 'Space' || e.code === 'Enter' || e.code === 'ArrowUp'){ e.preventDefault(); up(); }
+    });
+    stage.addEventListener('blur', up);
+    document.addEventListener('visibilitychange', function(){ if(document.hidden) up(); });
+
+    resetBtn.addEventListener('click', function(){
+      state = 'idle'; gas = false; s = 0; v = 0; lap = 1; spinT = 0; puffs = [];
+      say('Retour sur la grille. Maintiens le clic (ou la barre d’espace) pour relancer.');
+      draw(performance.now()); setHud();
+    });
+
+    if(window.ResizeObserver){ new ResizeObserver(function(){ resize(); }).observe(stage); }
+    else window.addEventListener('resize', resize);
+    resize(); setHud();
+
+  }catch(err){ var rc=document.querySelector('.race'); if(rc) rc.style.display='none'; }
+})();
+
+</script>
 </body>
 </html>
