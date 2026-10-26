@@ -1,0 +1,6 @@
+# Seul le site est publié : tout le reste du dossier (vidéo, bannières, sauvegardes…) reste sur l'ordinateur
+/*
+!/index.html
+!/assets/
+!/README.md
+!/.gitignore
