@@ -345,11 +345,18 @@
   .hscroll .tv-head{margin-bottom:2rem}
   .hscroll .tv-ctrls{display:none}
   .hscroll .filmstrip{overflow:visible;scroll-snap-type:none;cursor:default;will-change:transform}
-  .hscroll .slide{width:min(38vw,500px)}
+  /* cartes a l'horizontale (image | texte) : deux fois moins hautes, tout tient meme sur un portable */
+  .hscroll .slide{width:min(62vw,820px,calc((100vh - 260px) * 2.6));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.6rem;align-items:center}
+  .hscroll .slide-img{aspect-ratio:4/3}
+  .hscroll .slide-body{padding-top:0}
+  .hscroll .slide .tape{left:25%}
+  .hscroll .slide-facts div{grid-template-columns:5rem minmax(0,1fr)}
+  .hscroll .filmstrip{gap:3rem}
+  .hscroll .tv-head h2{font-size:clamp(1.9rem,4.6vh,3.2rem)}
+  .hscroll .tv-progress{margin-top:1rem}
   .hscroll .slide-img{aspect-ratio:3/2}
   .hscroll .tv-progress{display:block;height:2px;background:rgba(241,241,242,.18);margin-top:1.6rem;border-radius:2px;overflow:hidden}
   .hscroll .tv-progress span{display:block;height:100%;width:100%;background:var(--accent-on-ink);transform-origin:left;transform:scaleX(0)}
-  @media(max-height:760px){.hscroll .slide{width:min(34vw,440px)}.hscroll .tv-head h2{font-size:2.2rem}}
 
   /* lecteur video : rien n'est charge depuis YouTube avant le clic */
   .vid{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;background:#000;line-height:0}
@@ -1198,9 +1205,15 @@ if (window.NodeList && !NodeList.prototype.forEach) { NodeList.prototype.forEach
     var mq = window.matchMedia('(min-width: 1024px) and (min-height: 620px) and (pointer: fine)');
     if(reduce) return;
     var travel = 0, on = false;
+    var pin = sec.querySelector('.tv-pin'), inner = sec.querySelector('.tv-pin > .wrap');
     function measure(){
       on = mq.matches;
       sec.classList.toggle('hscroll', on);
+      /* si l'ecran est trop bas pour tout afficher, on garde le defilement classique au doigt / aux fleches */
+      if(on){
+        var top = parseFloat(getComputedStyle(pin).paddingTop) || 0, card = strip.querySelector('.slide');
+        if(inner.offsetHeight + top + 16 > window.innerHeight || (card && card.offsetWidth < 300)){ on = false; sec.classList.remove('hscroll'); }
+      }
       if(!on){ sec.style.height = ''; strip.style.transform = ''; return; }
       strip.style.transform = 'none';
       travel = Math.max(0, strip.scrollWidth - strip.clientWidth);
