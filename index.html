@@ -412,6 +412,14 @@
   .tl-date{font-family:var(--hand);font-weight:700;font-size:1.35rem;color:var(--accent-text)}
   .timeline h3{font-family:var(--serif);font-weight:400;font-size:1.55rem;line-height:1.2;margin:.15rem 0 .4rem}
   .timeline p{font-size:.94rem;line-height:1.7;color:var(--ink-soft);max-width:52ch}
+  .timeline a{color:var(--accent-text);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px;white-space:nowrap}
+  .timeline a .ext{display:inline-block;width:.62em;height:.62em;margin-left:.18em;vertical-align:.32em}
+  .tl-photo{display:grid;grid-template-columns:minmax(0,1fr) 132px;gap:1.5rem;align-items:start}
+  .tl-pol{position:relative;background:#fff;padding:.4rem .4rem 0;box-shadow:0 10px 22px rgba(21,9,65,.16);transform:rotate(3deg);margin-top:.5rem}
+  .tl-pol > img:not(.tape){display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+  .tl-pol .tape{top:-12px;left:50%;width:62px;transform:translateX(-50%) rotate(-4deg)}
+  .tl-pol figcaption{font-family:var(--hand);font-weight:700;font-size:1rem;line-height:1.1;color:var(--ink);text-align:center;padding:.3rem 0 .4rem}
+  @media(max-width:520px){.tl-photo{grid-template-columns:minmax(0,1fr);gap:1.2rem}.tl-pol{width:150px;margin-left:.4rem}}
   .timeline .tl-next::before{background:var(--accent)}
   .timeline .tl-next h3{color:var(--accent-text);font-style:italic}
 
@@ -857,6 +865,18 @@
             <h3>Chargée de communication, en stage</h3>
             <p>Six semaines au Centre Hospitalier d'Ardèche Nord : journal interne, jeu pédagogique, supports patients, couverture d'événements.</p>
           </li>
+          <li class="tl-photo">
+            <div>
+              <span class="tl-date">Juillet 2026</span>
+              <h3>Bénévole à l'<a href="https://www.azurmusicfestival.com/" target="_blank" rel="noopener noreferrer">Azur Music Festival<svg class="ext" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg><span class="sr"> (site du festival, nouvel onglet)</span></a></h3>
+              <p>Trois jours de bénévolat sur ce festival de musique électro à La Crau, dans le Var. Je ne l'ai pas organisé, mais j'y ai apporté ma contribution et j'ai vu de l'intérieur comment un événement se met en place.</p>
+            </div>
+            <figure class="tl-pol">
+              <img class="tape" src="assets/stickers/washi.webp" alt="" aria-hidden="true">
+              <img src="assets/img/azur-music-festival.webp" alt="Enseigne lumineuse bleue de l'Azur Music Festival, de nuit" loading="lazy">
+              <figcaption>trois jours sur place</figcaption>
+            </figure>
+          </li>
           <li class="tl-next">
             <span class="tl-date">Avril 2027</span>
             <h3>La suite… dans votre équipe&nbsp;?</h3>
@@ -1056,7 +1076,7 @@
           <h3>Personnes citées ou représentées dans les projets</h3>
           <p>Les projets présentés ont été réalisés pour des structures réelles. Les photographies de personnes ont été floutées et le nom d’un résident a été masqué. Toute personne citée qui souhaite un retrait ou une modification peut écrire à l’adresse ci-dessus.</p>
           <h3>Liens externes</h3>
-          <p>Le lien LinkedIn mène vers un site tiers qui applique sa propre politique et peut déposer ses propres cookies. Le lien e-mail ouvre votre application de messagerie.</p>
+          <p>Les liens vers LinkedIn et vers le site de l’Azur Music Festival mènent à des sites tiers qui appliquent leur propre politique et peuvent déposer leurs propres cookies. Le lien e-mail ouvre votre application de messagerie.</p>
         </div>
       </details>
 
@@ -1066,7 +1086,7 @@
           <p>Ce site n’utilise aucun cookie ni autre traceur : pas de stockage local, pas de pixel, pas de mesure d’audience. En l’absence de traceur soumis à consentement (article 82 de la loi Informatique et Libertés), aucun bandeau de consentement n’est affiché.</p>
           <p>Seule exception, à votre initiative : la vidéo du projet « La rencontre d’une vie » est hébergée sur YouTube. Tant que vous ne cliquez pas sur lecture, rien n’est chargé depuis YouTube (l’aperçu est une image hébergée avec le site). Si vous lancez la lecture, le lecteur est chargé depuis youtube-nocookie.com (mode de confidentialité renforcée de Google), qui peut alors traiter des données de navigation selon sa propre politique.</p>
           <p>Si cela devait changer, cette page serait mise à jour et votre consentement serait demandé avant tout dépôt non essentiel.</p>
-          <p>Les sites tiers vers lesquels pointent les liens (LinkedIn) peuvent déposer leurs propres cookies une fois que vous les ouvrez : consultez leurs politiques.</p>
+          <p>Les sites tiers vers lesquels pointent les liens (LinkedIn, Azur Music Festival) peuvent déposer leurs propres cookies une fois que vous les ouvrez : consultez leurs politiques.</p>
         </div>
       </details>
 
